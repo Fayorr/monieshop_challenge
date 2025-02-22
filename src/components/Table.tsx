@@ -1,35 +1,53 @@
-// import { dataFile } from "./dataFile";
-import { transactions } from "./output";
+import { useState } from 'react';
+import { transactions } from './output';
 
-const Table = () => { 
-    return (
-        <>
-        <h2>Customer Data</h2>
-			<table>
-				<tr>
-					<th>Sales Staff ID</th>
-					<th>Transaction Time</th>
-					<th>Total Products Sold</th>
-					<th>Sale Amount</th>
-                </tr>
-                <tbody>
-                {transactions.map((data, index) => (
-                    <tr key={index}>
-                        <td>{data.salesStaffId}</td>
-                        <td>{data.transactionTime}</td>
-                        <td>{`${data.products}
-                        `}</td>
-                        <td>{data[3]}</td>
-                        <td>{data[4]}</td>
-                </tbody>
-			</table>
-        </>
-		);
-}
+const Table = () => {
+	const [reveal, setReveal] = useState(false);
+	return (
+		<>
+			<h2>Customer Data</h2>
+			<button
+				onClick={() => {
+					setReveal(!reveal);
+				}}
+			>
+				Click to reveal data in Table format
+			</button>
+			{reveal && (
+				<table>
+					<thead>
+						<tr>
+							<th>Sales Staff ID</th>
+							<th>Transaction Time</th>
+							<th>Total Products Sold</th>
+							<th>Sale Amount</th>
+						</tr>
+					</thead>
+					<tbody>
+						{transactions.map((data, index) => (
+							<tr key={index}>
+								<td>{data.salesStaffId}</td>
+								<td>{data.transactionTime}</td>
+								<td>
+									{data.products.map((product, index) => (
+										<span key={index}>
+											(Product: {product.productId}, total: {product.quantity})
+										</span>
+									))}
+								</td>
+								<td>{data.saleAmount}</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
+			)}
+		</>
+	);
+};
 
 export default Table;
 
-// A single line in a transaction file stores information related to 1 transaction in a comma-separated format. The information present is: 
+// A single line in a transaction file stores information related to 1 transaction in a comma-separated format. The information present is:
 
 // salesStaffId
 
