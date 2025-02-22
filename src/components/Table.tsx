@@ -32,6 +32,7 @@ const Table = () => {
 									{data.products.map((product, index) => (
 										<span key={index}>
 											(Product: {product.productId}, total: {product.quantity})
+											<br />
 										</span>
 									))}
 								</td>

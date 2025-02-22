@@ -1,4 +1,3 @@
-// import { Data } from './types/data';
 import { transactions } from './src/components/output.ts';
 
 export function getHighestSalesVolume(): number {

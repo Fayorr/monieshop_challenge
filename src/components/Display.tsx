@@ -20,7 +20,7 @@ const Display = () => {
 					setReveal(!reveal);
 				}}
 			>
-				Click to reveal results
+				Click to reveal results for the 2024 files
 			</button>
 			{reveal && (
 				<div>
